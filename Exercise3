@@ -26,6 +26,61 @@ MariaDB [airport]> select airport.name as "airport name"
 
 Question 3. 
 Answer:
+select country.name as "country_name", airport.name as "airport_name"
+    -> from country, airport
+    -> where country.iso_country = airport.iso_country and
+    -> airport.continent = "AN";
++------------------------------------------+------------------------------------------+
+| country_name                             | airport_name                             |
++------------------------------------------+------------------------------------------+
+| Antarctica                               | Rothera Point Airport                    |
+| Antarctica                               | Novolazarevskaya Station                 |
+| Antarctica                               | Troll Airfield                           |
+| Antarctica                               | Gonz?lez Videla Antarctic Base           |
+| Antarctica                               | Ellsworth Station                        |
+| Antarctica                               | Jack F. Paulus Skiway                    |
+| Antarctica                               | Palmer Station Heliport                  |
+| Antarctica                               | Enigma Lake Skiway                       |
+| Antarctica                               | Machu Picchu Base Helipad                |
+| Antarctica                               | Comandante Ferraz Antarctic Station Heli |
+| Antarctica                               | Arctowsky Station Heliport               |
+| Antarctica                               | Wolfs Fang                               |
+| Antarctica                               | Boulder Clay Runway                      |
+| Antarctica                               | Concordia Skyway                         |
+| Antarctica                               | Zucchelli Ice Runway                     |
+| Antarctica                               | Showa Station Skiway                     |
+| Antarctica                               | Vostok Skiway                            |
+| Antarctica                               | Halley Research Station                  |
+| Antarctica                               | Rothera Research Station                 |
+| Antarctica                               | Sky Blu Airstrip                         |
+| French Southern Territories              | Juan de Nova Airstrip                    |
+| South Georgia and the South Sandwich Isl | Grytviken Emergency Helipad              |
+| Antarctica                               | Palmer Station Airport                   |
+| Antarctica                               | Phoenix Airfield                         |
+| Antarctica                               | McMurdo Station Ice Runway               |
+| Antarctica                               | McMurdo Station Pegasus Field            |
+| Antarctica                               | South Pole Station Airport               |
+| Antarctica                               | Williams Field                           |
+| Antarctica                               | Petrel Airport                           |
+| Antarctica                               | Gustavo Marambio Airport                 |
+| Antarctica                               | Matienzo Airfield                        |
+| Antarctica                               | Base Belgrano II Airport                 |
+| Antarctica                               | Esperanza Base                           |
+| Antarctica                               | Jubany Airbase                           |
+| Antarctica                               | Orcadas Base Heliport                    |
+| Antarctica                               | San Mart?n Base Airfield                 |
+| Antarctica                               | General Bernardo O'Higgins Base Skyway   |
+| Antarctica                               | Union Glacier Blue-Ice Runway            |
+| Antarctica                               | Patriot Hills Airport                    |
+| Antarctica                               | Teniente Rodolfo Marsh Martin Airport    |
+| French Southern Territories              | Port-aux-Fran?ais Heliport               |
+| French Southern Territories              | Base Alfred Faure Heliport               |
+| French Southern Territories              | Amsterdam Island Heliport                |
+| Antarctica                               | Casey Station Skiway                     |
+| Antarctica                               | Wilkins Runway                           |
++------------------------------------------+------------------------------------------+
+45 rows in set (0.035 sec)
+
 
 
 Question 4.
