@@ -1,0 +1,482 @@
+1. Write a query that prints out all the columns in the goal table. The output should look as follows:
+Answer:
+MariaDB [airport]> select * from goal;
++----+--------+-----------------------------+------+---------+-----------------+-----------------+-------------+
+| id | name   | description                 | icon | target  | target_minvalue | target_maxvalue | target_text |
++----+--------+-----------------------------+------+---------+-----------------+-----------------+-------------+
+|  1 | HOT    | Temperature over +25C       | 01d  | TEMP    |           25.00 |         9999.00 | NULL        |
+|  2 | COLD   | Temperature under -20C      | 13d  | TEMP    |        -9999.00 |          -20.00 | NULL        |
+|  3 | 0DEG   | Temperature exactly 0C      | 04d  | TEMP    |           -0.50 |            0.50 | NULL        |
+|  4 | 10DEG  | Temperature exactly +10C    | 04d  | TEMP    |            9.50 |           10.50 | NULL        |
+|  5 | 20DEG  | Temperature exactly +20C    | 04d  | TEMP    |           19.50 |           20.50 | NULL        |
+|  6 | CLEAR  | Clear skies                 | 01d  | WEATHER |            NULL |            NULL | Clear       |
+|  7 | CLOUDS | Cloudy                      | 04d  | WEATHER |            NULL |            NULL | Clouds      |
+|  8 | WINDY  | Wind blows more than 10 m/s | 04d  | WIND    |           10.00 |         9999.00 | NULL        |
++----+--------+-----------------------------+------+---------+-----------------+-----------------+-------------+
+8 rows in set (0.004 sec)
+
+2. Write a query that prints out the name and type of each airport in Finland. The country code for Finland is: FI. Expected output:
+Answer:
+MariaDB [airport]> select name, type from airport where iso_country = "FI";
++------------------------------------------+----------------+
+| name                                     | type           |
++------------------------------------------+----------------+
+| Aavahelukka Airport                      | small_airport  |
+| Ahmosuo Airport                          | small_airport  |
+| Alavus Airfield                          | small_airport  |
+| Jorvin Hospital Heliport                 | heliport       |
+| Kilpisj?rvi Heliport                     | heliport       |
+| Enontekio Airport                        | medium_airport |
+| Eura Airport                             | small_airport  |
+| Forssa Airfield                          | small_airport  |
+| Genb?le Airport                          | small_airport  |
+| Halli Airport                            | medium_airport |
+| Hernesaari Heliport                      | heliport       |
+| Helsinki Malmi Airport                   | closed         |
+| Kanta-H?meen Central Hospital Heliport   | heliport       |
+| Haapam?ki Airfield                       | closed         |
+| Haapaj?rvi Airport                       | closed         |
+| Helsinki Vantaa Airport                  | large_airport  |
+| Hailuoto Airfield                        | small_airport  |
+| H?meenkyr? Airfield                      | small_airport  |
+| Hanko Airport                            | small_airport  |
+| Oulun University Hospital Heliport       | heliport       |
+| Haapavesi Airfield                       | small_airport  |
+| Sein?joen Central Hospital Heliport      | heliport       |
+| Hyvink?? Airfield                        | small_airport  |
+| Meilahti Hospital Helipad                | heliport       |
+| Iisalmi Airport                          | small_airport  |
+| Kiikala Airport                          | small_airport  |
+| Immola Airport                           | small_airport  |
+| Kitee Airport                            | medium_airport |
+| Ivalo Airport                            | medium_airport |
+| North Karelia Central Hospital Heliport  | heliport       |
+| Ilvesjoki UL                             | small_airport  |
+| J?mij?rvi Airfield                       | small_airport  |
+| Joensuu Airport                          | medium_airport |
+| J?k?l?p?? Airfield                       | small_airport  |
+| Central Finland Central Hospital Helipor | heliport       |
+| Jyv?skyl? Airport                        | medium_airport |
+| Kauhava Airfield                         | medium_airport |
+| Kemi-Tornio Airport                      | medium_airport |
+| Kumlinge Airport                         | small_airport  |
+| Kuhmo Airfield                           | small_airport  |
+| Kajaani Airport                          | medium_airport |
+| Kauhajoki Airfield                       | medium_airport |
+| Kokkola-Pietarsaari Airport              | medium_airport |
+| Kemijarvi Airport                        | small_airport  |
+| Kannus Airfield                          | small_airport  |
+| Kalajoki Airfield                        | small_airport  |
+| K?rs?m?ki Airport                        | small_airport  |
+| Kuusamo Airport                          | medium_airport |
+| Kittil? Airport                          | medium_airport |
+| Kuopio Airport                           | medium_airport |
+| Kivij?rvi Airfield                       | small_airport  |
+| Kymi Airfield                            | small_airport  |
+| Lahti Vesivehmaa Airport                 | small_airport  |
+| Lapinlahti Airfield                      | small_airport  |
+| Lieksa Nurmes Airfield                   | small_airport  |
+| Lappeenranta Airport                     | medium_airport |
+| Lapland Central Hospital Heliport        | heliport       |
+| Mariehamn Airport                        | medium_airport |
+| Menkij?rvi Airfield                      | small_airport  |
+| Mikkeli Airport                          | medium_airport |
+| Ii Airfield                              | small_airport  |
+| M?nts?l? Airport                         | small_airport  |
+| Martiniiskonpalo Airport                 | small_airport  |
+| Savikko Airfield                         | small_airport  |
+| Nummela Airport                          | small_airport  |
+| Orip?? Airfield                          | small_airport  |
+| Oulu Airport                             | medium_airport |
+| Pokka Airport                            | small_airport  |
+| Peijaksen Hospital Heliport              | heliport       |
+| Pyh?selk? Airport                        | small_airport  |
+| Piikajarvi Airport                       | small_airport  |
+| Kuopio University Hospital Heliport      | heliport       |
+| Pieks?m?ki Airfield                      | small_airport  |
+| P?ij?t-H?meen Central Hospital Heliport  | heliport       |
+| Punkaharju Airfield                      | small_airport  |
+| Pori Airport                             | medium_airport |
+| Helsinki East-Redstone Airport           | medium_airport |
+| Tampere University Hospital Heliport     | heliport       |
+| Pudasj?rvi Airfield                      | small_airport  |
+| Pyh?salmi Airfield                       | small_airport  |
+| Rautavaara Airfield                      | small_airport  |
+| Raahe Pattijoki Airfield                 | small_airport  |
+| Rantasalmi Airfield                      | small_airport  |
+| Rovaniemi Airport                        | medium_airport |
+| Ranua Airfield                           | small_airport  |
+| Kiuruvesi Airfield                       | small_airport  |
+| R?ysk?l? Airfield                        | small_airport  |
+| Savonlinna Airport                       | medium_airport |
+| Selanpaa Airfield                        | small_airport  |
+| Sein?joki Airport                        | medium_airport |
+| Sonkaj?rvi-Jyrkk? Airfield               | closed         |
+| Sodankyla Airport                        | medium_airport |
+| Suomussalmi Airfield                     | small_airport  |
+| Torbacka Airfield                        | small_airport  |
+| Tampere-Pirkkala Airport                 | medium_airport |
+| Teisko Airfield                          | closed         |
+| Turku Airport                            | medium_airport |
+| Turku University Central Hospital Helipo | heliport       |
+| Utti Air Base                            | medium_airport |
+| Vaasa Airport                            | medium_airport |
+| Viitasaari Airfield                      | small_airport  |
+| Vaala Airfield                           | small_airport  |
+| Vampula Airfield                         | small_airport  |
+| Varkaus Airport                          | medium_airport |
+| Sulkaharju Airfield                      | small_airport  |
+| Vuotso Airfield                          | small_airport  |
+| Wredeby Airfield                         | small_airport  |
+| Ylivieska Airfield                       | medium_airport |
+| Pistohiekan Glider Field                 | small_airport  |
+| Ummeljoki KW Ultralight Airfield         | small_airport  |
+| Nummij?rvi Airfield                      | small_airport  |
+| ?ht?ri Airfield                          | small_airport  |
+| M?ntt? - Sassi Airfield                  | small_airport  |
+| Taivalkoski                              | small_airport  |
+| Parkano Airfield                         | small_airport  |
+| Soini Airfield                           | small_airport  |
+| Hangasj?rvi Airstrip                     | closed         |
++------------------------------------------+----------------+
+117 rows in set (0.004 sec)
+
+3. Write a query that prints out the names of all Finnish airports in alphabetical order. The country code for Finland is: FI. The output should look as follows (Note that the image has been cropped to fit the screen):
+Answer:
+MariaDB [airport]> select name from airport where iso_country = "FI" order by name asc;
++------------------------------------------+
+| name                                     |
++------------------------------------------+
+| ?ht?ri Airfield                          |
+| Aavahelukka Airport                      |
+| Ahmosuo Airport                          |
+| Alavus Airfield                          |
+| Central Finland Central Hospital Helipor |
+| Enontekio Airport                        |
+| Eura Airport                             |
+| Forssa Airfield                          |
+| Genb?le Airport                          |
+| H?meenkyr? Airfield                      |
+| Haapaj?rvi Airport                       |
+| Haapam?ki Airfield                       |
+| Haapavesi Airfield                       |
+| Hailuoto Airfield                        |
+| Halli Airport                            |
+| Hangasj?rvi Airstrip                     |
+| Hanko Airport                            |
+| Helsinki East-Redstone Airport           |
+| Helsinki Malmi Airport                   |
+| Helsinki Vantaa Airport                  |
+| Hernesaari Heliport                      |
+| Hyvink?? Airfield                        |
+| Ii Airfield                              |
+| Iisalmi Airport                          |
+| Ilvesjoki UL                             |
+| Immola Airport                           |
+| Ivalo Airport                            |
+| J?k?l?p?? Airfield                       |
+| J?mij?rvi Airfield                       |
+| Joensuu Airport                          |
+| Jorvin Hospital Heliport                 |
+| Jyv?skyl? Airport                        |
+| K?rs?m?ki Airport                        |
+| Kajaani Airport                          |
+| Kalajoki Airfield                        |
+| Kannus Airfield                          |
+| Kanta-H?meen Central Hospital Heliport   |
+| Kauhajoki Airfield                       |
+| Kauhava Airfield                         |
+| Kemi-Tornio Airport                      |
+| Kemijarvi Airport                        |
+| Kiikala Airport                          |
+| Kilpisj?rvi Heliport                     |
+| Kitee Airport                            |
+| Kittil? Airport                          |
+| Kiuruvesi Airfield                       |
+| Kivij?rvi Airfield                       |
+| Kokkola-Pietarsaari Airport              |
+| Kuhmo Airfield                           |
+| Kumlinge Airport                         |
+| Kuopio Airport                           |
+| Kuopio University Hospital Heliport      |
+| Kuusamo Airport                          |
+| Kymi Airfield                            |
+| Lahti Vesivehmaa Airport                 |
+| Lapinlahti Airfield                      |
+| Lapland Central Hospital Heliport        |
+| Lappeenranta Airport                     |
+| Lieksa Nurmes Airfield                   |
+| M?nts?l? Airport                         |
+| M?ntt? - Sassi Airfield                  |
+| Mariehamn Airport                        |
+| Martiniiskonpalo Airport                 |
+| Meilahti Hospital Helipad                |
+| Menkij?rvi Airfield                      |
+| Mikkeli Airport                          |
+| North Karelia Central Hospital Heliport  |
+| Nummela Airport                          |
+| Nummij?rvi Airfield                      |
+| Orip?? Airfield                          |
+| Oulu Airport                             |
+| Oulun University Hospital Heliport       |
+| P?ij?t-H?meen Central Hospital Heliport  |
+| Parkano Airfield                         |
+| Peijaksen Hospital Heliport              |
+| Pieks?m?ki Airfield                      |
+| Piikajarvi Airport                       |
+| Pistohiekan Glider Field                 |
+| Pokka Airport                            |
+| Pori Airport                             |
+| Pudasj?rvi Airfield                      |
+| Punkaharju Airfield                      |
+| Pyh?salmi Airfield                       |
+| Pyh?selk? Airport                        |
+| R?ysk?l? Airfield                        |
+| Raahe Pattijoki Airfield                 |
+| Rantasalmi Airfield                      |
+| Ranua Airfield                           |
+| Rautavaara Airfield                      |
+| Rovaniemi Airport                        |
+| Savikko Airfield                         |
+| Savonlinna Airport                       |
+| Sein?joen Central Hospital Heliport      |
+| Sein?joki Airport                        |
+| Selanpaa Airfield                        |
+| Sodankyla Airport                        |
+| Soini Airfield                           |
+| Sonkaj?rvi-Jyrkk? Airfield               |
+| Sulkaharju Airfield                      |
+| Suomussalmi Airfield                     |
+| Taivalkoski                              |
+| Tampere University Hospital Heliport     |
+| Tampere-Pirkkala Airport                 |
+| Teisko Airfield                          |
+| Torbacka Airfield                        |
+| Turku Airport                            |
+| Turku University Central Hospital Helipo |
+| Ummeljoki KW Ultralight Airfield         |
+| Utti Air Base                            |
+| Vaala Airfield                           |
+| Vaasa Airport                            |
+| Vampula Airfield                         |
+| Varkaus Airport                          |
+| Viitasaari Airfield                      |
+| Vuotso Airfield                          |
+| Wredeby Airfield                         |
+| Ylivieska Airfield                       |
++------------------------------------------+
+117 rows in set (0.004 sec)
+
+4. Write a query that prints out the name and type of each Finnish airport. Order the result first by type and secondly by name. The output should be as follows:
+Answer:
+MariaDB [airport]> select name, type from airport where iso_country = "FI" order by type, name;
++------------------------------------------+----------------+
+| name                                     | type           |
++------------------------------------------+----------------+
+| Haapaj?rvi Airport                       | closed         |
+| Haapam?ki Airfield                       | closed         |
+| Hangasj?rvi Airstrip                     | closed         |
+| Helsinki Malmi Airport                   | closed         |
+| Sonkaj?rvi-Jyrkk? Airfield               | closed         |
+| Teisko Airfield                          | closed         |
+| Central Finland Central Hospital Helipor | heliport       |
+| Hernesaari Heliport                      | heliport       |
+| Jorvin Hospital Heliport                 | heliport       |
+| Kanta-H?meen Central Hospital Heliport   | heliport       |
+| Kilpisj?rvi Heliport                     | heliport       |
+| Kuopio University Hospital Heliport      | heliport       |
+| Lapland Central Hospital Heliport        | heliport       |
+| Meilahti Hospital Helipad                | heliport       |
+| North Karelia Central Hospital Heliport  | heliport       |
+| Oulun University Hospital Heliport       | heliport       |
+| P?ij?t-H?meen Central Hospital Heliport  | heliport       |
+| Peijaksen Hospital Heliport              | heliport       |
+| Sein?joen Central Hospital Heliport      | heliport       |
+| Tampere University Hospital Heliport     | heliport       |
+| Turku University Central Hospital Helipo | heliport       |
+| Helsinki Vantaa Airport                  | large_airport  |
+| Enontekio Airport                        | medium_airport |
+| Halli Airport                            | medium_airport |
+| Helsinki East-Redstone Airport           | medium_airport |
+| Ivalo Airport                            | medium_airport |
+| Joensuu Airport                          | medium_airport |
+| Jyv?skyl? Airport                        | medium_airport |
+| Kajaani Airport                          | medium_airport |
+| Kauhajoki Airfield                       | medium_airport |
+| Kauhava Airfield                         | medium_airport |
+| Kemi-Tornio Airport                      | medium_airport |
+| Kitee Airport                            | medium_airport |
+| Kittil? Airport                          | medium_airport |
+| Kokkola-Pietarsaari Airport              | medium_airport |
+| Kuopio Airport                           | medium_airport |
+| Kuusamo Airport                          | medium_airport |
+| Lappeenranta Airport                     | medium_airport |
+| Mariehamn Airport                        | medium_airport |
+| Mikkeli Airport                          | medium_airport |
+| Oulu Airport                             | medium_airport |
+| Pori Airport                             | medium_airport |
+| Rovaniemi Airport                        | medium_airport |
+| Savonlinna Airport                       | medium_airport |
+| Sein?joki Airport                        | medium_airport |
+| Sodankyla Airport                        | medium_airport |
+| Tampere-Pirkkala Airport                 | medium_airport |
+| Turku Airport                            | medium_airport |
+| Utti Air Base                            | medium_airport |
+| Vaasa Airport                            | medium_airport |
+| Varkaus Airport                          | medium_airport |
+| Ylivieska Airfield                       | medium_airport |
+| ?ht?ri Airfield                          | small_airport  |
+| Aavahelukka Airport                      | small_airport  |
+| Ahmosuo Airport                          | small_airport  |
+| Alavus Airfield                          | small_airport  |
+| Eura Airport                             | small_airport  |
+| Forssa Airfield                          | small_airport  |
+| Genb?le Airport                          | small_airport  |
+| H?meenkyr? Airfield                      | small_airport  |
+| Haapavesi Airfield                       | small_airport  |
+| Hailuoto Airfield                        | small_airport  |
+| Hanko Airport                            | small_airport  |
+| Hyvink?? Airfield                        | small_airport  |
+| Ii Airfield                              | small_airport  |
+| Iisalmi Airport                          | small_airport  |
+| Ilvesjoki UL                             | small_airport  |
+| Immola Airport                           | small_airport  |
+| J?k?l?p?? Airfield                       | small_airport  |
+| J?mij?rvi Airfield                       | small_airport  |
+| K?rs?m?ki Airport                        | small_airport  |
+| Kalajoki Airfield                        | small_airport  |
+| Kannus Airfield                          | small_airport  |
+| Kemijarvi Airport                        | small_airport  |
+| Kiikala Airport                          | small_airport  |
+| Kiuruvesi Airfield                       | small_airport  |
+| Kivij?rvi Airfield                       | small_airport  |
+| Kuhmo Airfield                           | small_airport  |
+| Kumlinge Airport                         | small_airport  |
+| Kymi Airfield                            | small_airport  |
+| Lahti Vesivehmaa Airport                 | small_airport  |
+| Lapinlahti Airfield                      | small_airport  |
+| Lieksa Nurmes Airfield                   | small_airport  |
+| M?nts?l? Airport                         | small_airport  |
+| M?ntt? - Sassi Airfield                  | small_airport  |
+| Martiniiskonpalo Airport                 | small_airport  |
+| Menkij?rvi Airfield                      | small_airport  |
+| Nummela Airport                          | small_airport  |
+| Nummij?rvi Airfield                      | small_airport  |
+| Orip?? Airfield                          | small_airport  |
+| Parkano Airfield                         | small_airport  |
+| Pieks?m?ki Airfield                      | small_airport  |
+| Piikajarvi Airport                       | small_airport  |
+| Pistohiekan Glider Field                 | small_airport  |
+| Pokka Airport                            | small_airport  |
+| Pudasj?rvi Airfield                      | small_airport  |
+| Punkaharju Airfield                      | small_airport  |
+| Pyh?salmi Airfield                       | small_airport  |
+| Pyh?selk? Airport                        | small_airport  |
+| R?ysk?l? Airfield                        | small_airport  |
+| Raahe Pattijoki Airfield                 | small_airport  |
+| Rantasalmi Airfield                      | small_airport  |
+| Ranua Airfield                           | small_airport  |
+| Rautavaara Airfield                      | small_airport  |
+| Savikko Airfield                         | small_airport  |
+| Selanpaa Airfield                        | small_airport  |
+| Soini Airfield                           | small_airport  |
+| Sulkaharju Airfield                      | small_airport  |
+| Suomussalmi Airfield                     | small_airport  |
+| Taivalkoski                              | small_airport  |
+| Torbacka Airfield                        | small_airport  |
+| Ummeljoki KW Ultralight Airfield         | small_airport  |
+| Vaala Airfield                           | small_airport  |
+| Vampula Airfield                         | small_airport  |
+| Viitasaari Airfield                      | small_airport  |
+| Vuotso Airfield                          | small_airport  |
+| Wredeby Airfield                         | small_airport  |
++------------------------------------------+----------------+
+117 rows in set (0.003 sec)
+
+5. Write a query that prints out the names of all countries that start with the letter F from the country table. The output should look as follows:
+Answer:
+MariaDB [airport]> select name from country where name like "F%";
++-----------------------------+
+| name                        |
++-----------------------------+
+| Finland                     |
+| Fiji                        |
+| Falkland Islands            |
+| Faroe Islands               |
+| France                      |
+| French Guiana               |
+| French Polynesia            |
+| French Southern Territories |
++-----------------------------+
+8 rows in set (0.001 sec)
+
+6.Write a query that prints out all country names in the country table that include the letter F. The output should be as follows:
+Answer:
+MariaDB [airport]> select name from country where name like "%f%";
++-----------------------------+
+| name                        |
++-----------------------------+
+| Afghanistan                 |
+| Burkina Faso                |
+| Central African Republic    |
+| Finland                     |
+| Fiji                        |
+| Falkland Islands            |
+| Faroe Islands               |
+| France                      |
+| French Guiana               |
+| Isle of Man                 |
+| Norfolk Island              |
+| French Polynesia            |
+| French Southern Territories |
+| Wallis and Futuna           |
+| South Africa                |
++-----------------------------+
+15 rows in set (0.002 sec)
+
+7. What is Vesa's current location? The output should be as follows:
+Answer:
+MariaDB [airport]> select location from game where screen_name = "Vesa";
++----------+
+| location |
++----------+
+| EGCC     |
++----------+
+1 row in set (0.001 sec)
+
+8. How much of his CO2 budget has Ilkka consumed? The output should look as follows:
+Answer:
+MariaDB [airport]> select co2_consumed from game where screen_name = "Ilkka";
++--------------+
+| co2_consumed |
++--------------+
+|         8000 |
++--------------+
+1 row in set (0.001 sec)
+
+9. What is the original CO2 budget? Print out the CO2 budget value only once. The output should be as follows:
+Answer:
+MariaDB [airport]> select co2_budget from game where id = 1;
++------------+
+| co2_budget |
++------------+
+|      10000 |
++------------+
+1 row in set (0.003 sec)
+
+10. Note! The automatical CodeRunner check is based on SQLite. SQLite provides limited functionality compared to MariaDB. Complete the exercise in MariaDB. Test your solution in MariaDB and copy the final source code here.
+
+How much of his CO2 budget does Ilkka have left? Complete the query so that the result includes the following fields: screen_name, co2_budget, co2_consumed and co2_left.
+
+Hint: You will need a variable to complete the query. You can define a variable with @variable_name. You can assign a value to a variable with :=.
+
+The output should be as follows:
+Answer:
+MariaDB [airport]> select screen_name, co2_budget, co2_consumed, @co2_left := co2_budget - co2_consumed as co2_left from game where screen_name = "Ilkka"; 
++------------+------------+--------------+----------+
+|screen_name | co2_budget | co2_consumed | co2_left |
++------------+------------+--------------+----------+
+| Ilkka      |      10000 |         8000 |     2000 |
++------------+------------+--------------+----------+
+ 1 row in set (0.003 sec)
+
