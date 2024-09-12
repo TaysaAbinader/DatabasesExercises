@@ -1,0 +1,129 @@
+Question 1.
+Answer:
+
+
+
+Question 2.
+Answer:
+MariaDB [airport]> select airport.name as "airport name"
+    -> from airport, country
+    -> where country.iso_country = airport.iso_country and
+    -> airport.type = "large_airport" and
+    -> airport.iso_country = "FR";
++------------------------------------------+
+| airport name                             |
++------------------------------------------+
+| Bordeaux-M?rignac Airport                |
+| Toulouse-Blagnac Airport                 |
+| Lyon Saint-Exup?ry Airport               |
+| Marseille Provence Airport               |
+| Nice-C?te d'Azur Airport                 |
+| Charles de Gaulle International Airport  |
+| Paris-Orly Airport                       |
+| EuroAirport Basel-Mulhouse-Freiburg Airp |
++------------------------------------------+
+8 rows in set (0.006 sec)
+
+Question 3. 
+Answer:
+
+
+Question 4.
+Answer:
+MariaDB [airport]> select elevation_ft
+    -> from game, airport
+    -> where airport.ident = game.location and
+    -> game.screen_name = "Heini";
++--------------+
+| elevation_ft |
++--------------+
+|          179 |
++--------------+
+1 row in set (0.002 sec)
+
+
+Question 5.
+Answer:
+MariaDB [airport]> select @elevation_m := elevation_ft * 0.3048 as "elevation_m" from game, airport where airport.ident = game.location and game.screen_name = "Heini";
++-------------+
+| elevation_m |
++-------------+
+|     54.5592 |
++-------------+
+1 row in set (0.003 sec)
+
+Question 6.
+Answer:
+MariaDB [airport]> select airport.name
+    -> from airport, game
+    -> where airport.ident = game.location and
+    -> game.screen_name = "Ilkka";
++------------------------+
+| name                   |
++------------------------+
+| London Gatwick Airport |
++------------------------+
+1 row in set (0.001 sec)
+
+Question 7.
+Answer:
+MariaDB [airport]> select country.name
+    -> from game, country, airport
+    -> where game.location = airport.ident and
+    -> airport.iso_country = country.iso_country and
+    -> game.screen_name = "Ilkka";
++----------------+
+| name           |
++----------------+
+| United Kingdom |
++----------------+
+1 row in set (0.001 sec)
+
+Question 8.
+Answer:
+MariaDB [airport]> select goal.name
+    -> from game, goal, goal_reached
+    -> where game.id = goal_reached.game_id and
+    -> goal.id = goal_reached.goal_id and
+    -> game.screen_name = "Heini";
++--------+
+| name   |
++--------+
+| 10DEG  |
+| CLOUDS |
++--------+
+2 rows in set (0.002 sec)
+
+Question 9.
+Answer:
+MariaDB [airport]> select airport.name
+    -> from game, goal, goal_reached, airport
+    -> where game.id = goal_reached.game_id and
+    -> goal.id = goal_reached.goal_id and
+    -> airport.ident = game.location and
+    -> goal.name = "clouds" and game.screen_name = "Ilkka";
++------------------------+
+| name                   |
++------------------------+
+| London Gatwick Airport |
++------------------------+
+1 row in set (0.002 sec)
+
+Question 10. 
+Answer:
+MariaDB [airport]> select country.name
+    -> from game, goal, goal_reached, airport, country
+    -> where game.id = goal_reached.game_id and 
+    -> goal.id = goal_reached.goal_id and
+    -> airport.ident = game.location and
+    -> country.iso_country = airport.iso_country and
+    -> goal.name = "clouds" and
+    -> game.screen_name = "Ilkka";
++----------------+
+| name           |
++----------------+
+| United Kingdom |
++----------------+
+1 row in set (0.003 sec)
+
+
