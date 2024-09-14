@@ -35,4 +35,14 @@ Question 4: List all countries that have no airports.
 
 Hint: You need to use the negation NOT IN.
 Answer:
+MariaDB [airport]> select country.name from country where country.iso_country not in (select airport.iso_country from airport);
++-------------------------------+
+| name                          |
++-------------------------------+
+| Pitcairn                      |
+| Tokelau                       |
+| Unknown or unassigned country |
++-------------------------------+
+3 rows in set (0.010 sec)
+
 
