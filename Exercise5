@@ -1,1 +1,38 @@
+Question 1: One country has an airport where the airport name begins with the word "Satsuma". Print out the name of the country.
+Answer:
+MariaDB [airport]> select country.name from country where country.iso_country in (select airport.iso_country from airport where airport.name like "Satsuma%");
++-------+
+| name  |
++-------+
+| Japan |
++-------+
+1 row in set (0.036 sec)
+
+Question 2: List the names of all airports in Monaco.
+Answer:
+MariaDB [airport]> select airport.name from airport where airport.iso_country in (select country.iso_country from country where country.name = "Monaco");
++----------------------------------+
+| name                             |
++----------------------------------+
+| Monaco Heliport                  |
+| Terre-Plein du Larvotto Heliport |
+| Princess Grace Hospital Helipad  |
++----------------------------------+
+3 rows in set (0.002 sec)
+
+Question 3: List the names of all players who have achieved the clouds goal.
+Answer:
+MariaDB [airport]> select game.screen_name from game where game.id in (select goal_reached.game_id from goal_reached where goal_reached.goal_id in(select goal.id from goal where goal.name = "CLOUDS"));
++-------------+
+| screen_name |
++-------------+
+| Heini       |
+| Ilkka       |
++-------------+
+2 rows in set (0.003 sec)
+
+Question 4: List all countries that have no airports.
+
+Hint: You need to use the negation NOT IN.
+Answer:
 
