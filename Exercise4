@@ -1,1 +1,111 @@
+Question 1: List all Finnish airports that provide scheduled services. The result must include both the name of the country as well as the name of the airport.
+
+Hint 1: Country name is Finland.
+Hint 2: You need quotation marks around an alias that consists of several words.
+Answer:
+MariaDB [airport]> select country.name as "country name", airport.name as "country name"
+    -> from country
+    -> inner join airport on airport.iso_country = country.iso_country
+    -> where country.name = "Finland" and
+    -> airport.scheduled_service = "yes";
++--------------+-----------------------------+
+| country name | country name                |
++--------------+-----------------------------+
+| Finland      | Enontekio Airport           |
+| Finland      | Helsinki Vantaa Airport     |
+| Finland      | Ivalo Airport               |
+| Finland      | Joensuu Airport             |
+| Finland      | Jyv?skyl? Airport           |
+| Finland      | Kemi-Tornio Airport         |
+| Finland      | Kajaani Airport             |
+| Finland      | Kokkola-Pietarsaari Airport |
+| Finland      | Kuusamo Airport             |
+| Finland      | Kittil? Airport             |
+| Finland      | Kuopio Airport              |
+| Finland      | Lappeenranta Airport        |
+| Finland      | Mariehamn Airport           |
+| Finland      | Oulu Airport                |
+| Finland      | Pori Airport                |
+| Finland      | Rovaniemi Airport           |
+| Finland      | Savonlinna Airport          |
+| Finland      | Sein?joki Airport           |
+| Finland      | Tampere-Pirkkala Airport    |
+| Finland      | Turku Airport               |
+| Finland      | Vaasa Airport               |
+| Finland      | Varkaus Airport             |
++--------------+-----------------------------+
+22 rows in set (0.079 sec)
+
+Question 2: List the names and current airports of all players.
+Answer:
+MariaDB [airport]> select game.screen_name, airport.name
+    -> from airport
+    -> inner join game on game.location = airport.ident
+    -> where game.screen_name = "Heini" or
+    -> game.screen_name = "Vesa" or
+    -> game.screen_name = "Ilkka";
++-------------+-------------------------+
+| screen_name | name                    |
++-------------+-------------------------+
+| Heini       | Helsinki Vantaa Airport |
+| Vesa        | Manchester Airport      |
+| Ilkka       | London Gatwick Airport  |
++-------------+-------------------------+
+3 rows in set (0.002 sec)
+
+Question 3: List the names and current countries of all players.
+Answer:
+MariaDB [airport]> select game.screen_name, country.name
+    -> from game
+    -> inner join airport on airport.ident = game.location
+    -> inner join country on country.iso_country = airport.iso_country
+    -> where game.screen_name = "Heini" or
+    -> game.screen_name = "Vesa" or
+    -> game.screen_name = "Ilkka";
++-------------+----------------+
+| screen_name | name           |
++-------------+----------------+
+| Heini       | Finland        |
+| Vesa        | United Kingdom |
+| Ilkka       | United Kingdom |
++-------------+----------------+
+3 rows in set (0.002 sec)
+
+Question 4: List the names of all airports that include the string "Hels" and the names of any players that might currently be on any of the listed airports.
+Answer:
+MariaDB [airport]> select airport.name, game.screen_name from airport left join game on game.location = airport.ident where airport.name like "%Hels%";
++---------------------------------------+-------------+
+| name                                  | screen_name |
++---------------------------------------+-------------+
+| Winchelsea Airport                    | NULL        |
+| Reichelsheim Airport                  | NULL        |
+| Flugplatz Michelstadt/Odenwald        | NULL        |
+| Helsinki Malmi Airport                | NULL        |
+| Helsinki Vantaa Airport               | Heini       |
+| Helsinki East-Redstone Airport        | NULL        |
+| ?ngelholm-Helsingborg Airport         | NULL        |
+| Shelsley-Beauchamp Airstrip           | NULL        |
+| Michels Avia??o Agr?cola LTDA Airport | NULL        |
+| Michels Farms Airport                 | NULL        |
++---------------------------------------+-------------+
+10 rows in set (0.045 sec)
+
+Question 5: List the names of all airports that include the string "Hels" and the names of any players that might currently be on any of the listed airports.
+Answer:
+MariaDB [airport]> select goal.name, game.screen_name from goal left join goal_reached on goal_reached.goal_id = goal.id left join game on game.id = goal_reached.game_id;
++--------+-------------+
+| name   | screen_name |
++--------+-------------+
+| HOT    | NULL        |
+| COLD   | NULL        |
+| 0DEG   | NULL        |
+| 10DEG  | Heini       |
+| 10DEG  | Vesa        |
+| 20DEG  | NULL        |
+| CLEAR  | NULL        |
+| CLOUDS | Heini       |
+| CLOUDS | Ilkka       |
+| WINDY  | NULL        |
++--------+-------------+
+10 rows in set (0.001 sec)
 
