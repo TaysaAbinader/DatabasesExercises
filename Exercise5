@@ -45,4 +45,20 @@ MariaDB [airport]> select country.name from country where country.iso_country no
 +-------------------------------+
 3 rows in set (0.010 sec)
 
+Question 5: Which weather goals has Heini not achieved yet?
+
+Hint: You need to use the negation NOT IN.
+Answer:
+MariaDB [airport]> select goal.name from goal where goal.id not in (select goal_reached.goal_id from goal_reached where goal_reached.game_id in (select game.id from game where game.screen_name = "Heini"));
++-------+
+| name  |
++-------+
+| HOT   |
+| COLD  |
+| 0DEG  |
+| 20DEG |
+| CLEAR |
+| WINDY |
++-------+
+6 rows in set (0.004 sec)
 
