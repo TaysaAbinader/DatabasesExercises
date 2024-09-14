@@ -1,7 +1,100 @@
-Question 1.
+Question 1.Write a query that lists the names of all countries and airports. Select Iceland as the country and assign the following aliases:
+•	name column of the country table:  alias "country name"
+•	name column of the airport table: alias "airport name"
+Hint: If you assign aliases with multiple words, you need to use quotation marks.
 Answer:
-
-
+MariaDB [airport]> select country.name as "country name", airport.name as "airport name" from country, airport where country.iso_country = airport.iso_country and  country.name = "Iceland";
++--------------+--------------------------------+
+| country name | airport name                   |
++--------------+--------------------------------+
+| Iceland      | Arnger?areyri Airport          |
+| Iceland      | ?lftaver Airport               |
+| Iceland      | Akureyri Airport               |
+| Iceland      | Bakki Airport                  |
+| Iceland      | Bildudalur Airport             |
+| Iceland      | Borgarfj?r?ur eystri Airport   |
+| Iceland      | Baeir Airport                  |
+| Iceland      | Bakkafj?r?ur Airport           |
+| Iceland      | Hjaltabakki Airport            |
+| Iceland      | B??ardalur Airport             |
+| Iceland      | Brei?dalsv?k Airport           |
+| Iceland      | Dagver?ar? Airport             |
+| Iceland      | Dj?pivogur Airport             |
+| Iceland      | Egilssta?ir Airport            |
+| Iceland      | Einholtsmelar Airport          |
+| Iceland      | F?skr??sfj?r?ur Airport        |
+| Iceland      | Fl??ir Airport                 |
+| Iceland      | Fagurh?lsm?ri Airport          |
+| Iceland      | Fors?ti Airport                |
+| Iceland      | Geysir Airport                 |
+| Iceland      | Grundarfj?r?ur Airport         |
+| Iceland      | Gunnarsholt Airport            |
+| Iceland      | Gj?gur Airport                 |
+| Iceland      | Gr?msey Airport                |
+| Iceland      | Gr?mssta?ir Airport            |
+| Iceland      | Her?ubrei?arlindir Airport     |
+| Iceland      | Hveravellir Airport            |
+| Iceland      | H?lmav?k Airport               |
+| Iceland      | Hella Airport                  |
+| Iceland      | Hornafj?r?ur Airport           |
+| Iceland      | Hvolsv?llur Airport            |
+| Iceland      | Hrafnseyri Airport             |
+| Iceland      | Holt Airport                   |
+| Iceland      | H?sav?k Airport                |
+| Iceland      | Kr?ksta?armelar Airport        |
+| Iceland      | Hrauneyjarfoss Airport         |
+| Iceland      | Hr?sey Airport                 |
+| Iceland      | H?safell Airport               |
+| Iceland      | Ingjaldssan?ur Airport         |
+| Iceland      | ?safj?r?ur Airport             |
+| Iceland      | Kald?rmelar Airport            |
+| Iceland      | Kerlingafj?ll Airport          |
+| Iceland      | Keflavik International Airport |
+| Iceland      | Kroksfjard-Arnes Airport       |
+| Iceland      | Kirkjub?jarklaustur Airport    |
+| Iceland      | K?pasker Airport               |
+| Iceland      | Sau??rkr?kur Airport           |
+| Iceland      | M?lakot Airport                |
+| Iceland      | Melger?ismelar Airport         |
+| Iceland      | Melanes Airport                |
+| Iceland      | Tungubakkar Airport            |
+| Iceland      | N?jidalur Airport              |
+| Iceland      | Nor?fj?r?ur Airport            |
+| Iceland      | ?lafsfj?r?ur Airport           |
+| Iceland      | Patreksfj?r?ur Airport         |
+| Iceland      | Reykh?lar Airport              |
+| Iceland      | Rif Airport                    |
+| Iceland      | Raufarh?fn Airport             |
+| Iceland      | Reykjavik Airport              |
+| Iceland      | Reykjahl?? Airport             |
+| Iceland      | Reykjanes Airport              |
+| Iceland      | Sand? Airport                  |
+| Iceland      | Selfoss Airport                |
+| Iceland      | Steinasandur Airport           |
+| Iceland      | Stora-Holt Airport             |
+| Iceland      | Siglufj?r?ur Airport           |
+| Iceland      | Sk?gasandur Airport            |
+| Iceland      | Sv?nafell Airport              |
+| Iceland      | Sprengisandur Airport          |
+| Iceland      | St?rikroppur Airport           |
+| Iceland      | Sandskei? Airport              |
+| Iceland      | Stykkish?lmur Airport          |
+| Iceland      | Sk?lavatn Airport              |
+| Iceland      | ?ingeyri Airport               |
+| Iceland      | T?lknafj?r?ur Airport          |
+| Iceland      | Sau?anes Airport               |
+| Iceland      | ??rsm?rk Airport               |
+| Iceland      | ??rsh?fn Airport               |
+| Iceland      | Thorisos Airport               |
+| Iceland      | Vatnsnes Airport               |
+| Iceland      | Varmahlid Airport              |
+| Iceland      | V?k Airport                    |
+| Iceland      | Vestmannaeyjar Airport         |
+| Iceland      | Vopnafj?r?ur Airport           |
+| Iceland      | Su?ureyri Airstrip             |
+| Iceland      | Hrauneyjarfoss Heliport        |
++--------------+--------------------------------+
+86 rows in set (0.007 sec)
 
 Question 2.
 Answer:
