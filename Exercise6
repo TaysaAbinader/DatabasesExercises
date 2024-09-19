@@ -7,3 +7,24 @@ MariaDB [airport]> select max(elevation_ft) from airport;
 |             22000 |
 +-------------------+
 1 row in set (0.061 sec)
+
+Question 2. Write a query that lists all continents and the number of countries on them.
+Answer:
+MariaDB [airport]> select continent, count(*) from country group by continent;
++-----------+----------+
+| continent | count(*) |
++-----------+----------+
+| AF        |       59 |
+| AN        |        3 |
+| AS        |       54 |
+| EU        |       50 |
+| NA        |       41 |
+| OC        |       27 |
+| SA        |       14 |
++-----------+----------+
+7 rows in set (0.004 sec)
+
+Question 3. List the names of all players and the number of weather goals they have achieved.
+Answer:
+
+
