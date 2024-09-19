@@ -1,0 +1,9 @@
+Question 1. What is the elevation of the highest airport location?
+Answer:
+MariaDB [airport]> select max(elevation_ft) from airport;
++-------------------+
+| max(elevation_ft) |
++-------------------+
+|             22000 |
++-------------------+
+1 row in set (0.061 sec)
