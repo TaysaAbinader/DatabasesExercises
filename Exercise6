@@ -26,5 +26,156 @@ MariaDB [airport]> select continent, count(*) from country group by continent;
 
 Question 3. List the names of all players and the number of weather goals they have achieved.
 Answer:
+MariaDB [airport]> select screen_name, count(*) from game, goal_reached where game.id = goal_reached.game_id group by screen_name;
++-------------+----------+
+| screen_name | count(*) |
++-------------+----------+
+| Heini       |        2 |
+| Ilkka       |        1 |
+| Vesa        |        1 |
++-------------+----------+
+3 rows in set (0.004 sec)
+
+Question 4. Which player has the smallest carbon foot print?
+
+Hint 1: Do not use the desc limit if there are multiple airports with the same elevation: desc limit only selects one of them. You need all airports with the highest elevation.
+
+Hint 2: You need to perform a subquery even though your query only targets one table.
+Answer:
+MariaDB [airport]> select screen_name from game where co2_consumed in (select min(co2_consumed) from game);
++-------------+
+| screen_name |
++-------------+
+| Heini       |
++-------------+
+1 row in set (0.005 sec)
+
+Question 5. Print out the names of all countries and the number of airports in each country. Order the results by the airport count in descending order. Only include the top 50 countries with the largest number of airports.
+Answer:
+MariaDB [airport]> select country.name, count(*) from country, airport where country.iso_country = airport.iso_country group by country.name order by count(*) desc limit 50;
++----------------------+----------+
+| name                 | count(*) |
++----------------------+----------+
+| United States        |    28685 |
+| Brazil               |     6132 |
+| Japan                |     3110 |
+| Canada               |     2878 |
+| Australia            |     2242 |
+| Mexico               |     2089 |
+| Russia               |     1416 |
+| South Korea          |     1393 |
+| United Kingdom       |     1346 |
+| Germany              |      977 |
+| France               |      964 |
+| Argentina            |      937 |
+| Italy                |      829 |
+| Colombia             |      714 |
+| Papua New Guinea     |      601 |
+| Venezuela            |      600 |
+| Philippines          |      593 |
+| China                |      588 |
+| South Africa         |      581 |
+| India                |      547 |
+| Indonesia            |      510 |
+| Chile                |      504 |
+| Spain                |      473 |
+| Kenya                |      375 |
+| Poland               |      327 |
+| Congo (Kinshasa)     |      292 |
+| Czech Republic       |      292 |
+| Namibia              |      258 |
+| Norway               |      251 |
+| Sweden               |      244 |
+| Ukraine              |      239 |
+| Turkey               |      237 |
+| United Arab Emirates |      223 |
+| Portugal             |      221 |
+| New Zealand          |      212 |
+| Tanzania             |      210 |
+| Iran                 |      204 |
+| Bolivia              |      200 |
+| Per?                 |      185 |
+| Uzbekistan           |      178 |
+| Belgium              |      177 |
+| Kazakhstan           |      173 |
+| Pakistan             |      173 |
+| Honduras             |      159 |
+| Zimbabwe             |      155 |
+| Bulgaria             |      151 |
+| Austria              |      147 |
+| Cuba                 |      143 |
+| Botswana             |      134 |
+| Costa Rica           |      134 |
++----------------------+----------+
+50 rows in set (0.052 sec)
+
+Question 6. List the countries with more than 1000 airports. Use the iso_country field in the query.
+Answer:
+MariaDB [airport]> select country.name from country, airport where country.iso_country = airport.iso_country group by country.name having count(*) >= 1000;
++----------------+
+| name           |
++----------------+
+| Australia      |
+| Brazil         |
+| Canada         |
+| Japan          |
+| Mexico         |
+| Russia         |
+| South Korea    |
+| United Kingdom |
+| United States  |
++----------------+
+9 rows in set (0.047 sec)
+
+Question 7. Print out the name of the highest airport in the world.
+
+Hint 1: Do not use desc limit. In case there are several airports with the same elevation value, desc limit only select one of them.
+
+Hint 2: You need to perform a subquery even though the query only targets one table.
+
+MariaDB [airport]> select airport.name from airport where elevation_ft in (select max(elevation_ft) from airport);
++-----------------------------+
+| name                        |
++-----------------------------+
+| Siachen Glacier AFS Airport |
++-----------------------------+
+1 row in set (0.060 sec)
+
+Question 8. In which country does the highest airport reside in?
+
+Hint 1: Do not use desc limit. If there are several airports with the same elevation value, desc limit only selects one of them.
+
+Hint 2: Use subqueries.
+Answer:
+MariaDB [airport]> select country.name from country where country.iso_country in (select airport.iso_country from airport where elevation_ft in (select max(elevation_ft) from airport));
++-------+
+| name  |
++-------+
+| India |
++-------+
+1 row in set (0.059 sec)
+
+Question 9. How many weather goals has Vesa achieved so far?
+Answer:
+MariaDB [airport]> select count(*) from goal_reached where game_id in (select id from game where screen_name in (select screen_name from game where screen_name = "Vesa"));
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.001 sec)
+
+Question 10. What is the name of the airport that resides closest to the polar regions?
+
+Hint: The latitude value of both the north and south pole is 0.
+Answer:
+MariaDB [airport]> select airport.name from airport where airport.latitude_deg in (select min(latitude_deg) from airport);
++----------------------------+
+| name                       |
++----------------------------+
+| South Pole Station Airport |
++----------------------------+
+1 row in set (0.064 sec)
+
 
 
