@@ -1,1 +1,55 @@
+Question 1. Vesa flies from his current location to the Nottingham Airport. At the same time, Vesa's carbon footprint increases by 500. Update the information to the database.
 
+Hint 1: You need to use a subquery to find out the ident value of Nottingham Airport.
+Answer:
+MariaDB [airport]> update game set game.location = (select ident from airport where airport.name = "Nottingham Airport") where game.screen_name = "Vesa";
+Query OK, 1 row affected (0.057 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [airport]> select * from game;
++----+--------------+------------+----------+-------------+
+| id | co2_consumed | co2_budget | location | screen_name |
++----+--------------+------------+----------+-------------+
+| 1  |         2000 |      10000 | EFHK     | Heini       |
+| 2  |         3000 |      10000 | EGBN     | Vesa        |
+| 3  |         8000 |      10000 | EGKK     | Ilkka       |
++----+--------------+------------+----------+-------------+
+3 rows in set (0.001 sec)
+MariaDB [airport]> update game set co2_consumed = 3500 where game.screen_name = "Vesa";
+Query OK, 1 row affected (0.002 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [airport]> select * from game;
++----+--------------+------------+----------+-------------+
+| id | co2_consumed | co2_budget | location | screen_name |
++----+--------------+------------+----------+-------------+
+| 1  |         2000 |      10000 | EFHK     | Heini       |
+| 2  |         3500 |      10000 | EGBN     | Vesa        |
+| 3  |         8000 |      10000 | EGKK     | Ilkka       |
++----+--------------+------------+----------+-------------+
+3 rows in set (0.001 sec)
+
+Question 2. Prepare your own database for the project by deleting all dummy data relating to the game state. To maintain referential integrity, you have to delete the data in a specific order.
+
+Do you have to delete data first from the game table or from the goal_reached table?
+
+a. game
+
+b. goal_reached
+Answer: B (goal reached) because that's the table that connects data from games table to goal table.
+
+Question 3. Delete the dummy data from the goal_reached table.
+Answer:
+MariaDB [airport]> delete from goal_reached;
+Query OK, 4 rows affected (0.002 sec)
+
+MariaDB [airport]> select * from goal_reached;
+Empty set (0.000 sec)
+
+Question 4. Delete the data from the game table.
+Answer:
+MariaDB [airport]> delete from game;
+Query OK, 3 rows affected (0.002 sec)
+
+MariaDB [airport]> select * from game;
+Empty set (0.001 sec)
